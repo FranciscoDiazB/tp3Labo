@@ -1,0 +1,483 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "controller.h"
+
+
+
+/** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
+{
+	int exito = 0;
+
+	FILE* pArchivo;
+
+	pArchivo = fopen(path, "r");
+
+	if(pArchivo == NULL){
+
+		printf("\nNo se pudo leer el archivo\n");
+	}
+	else{
+		printf("\nSe pudo leer el archivo\n");
+		if(parser_EmployeeFromText(pArchivo, pArrayListEmployee) != 0){
+
+			exito = 1;
+		}
+		fclose(pArchivo);
+	}
+
+    return exito;
+}
+
+/** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
+{
+	int exito = 0;
+
+	FILE* pArchivo;
+
+	pArchivo = fopen(path, "rb");
+
+	if(pArchivo == NULL){
+
+		printf("\nNo se pudo leer el archivo\n");
+	}
+	else{
+		printf("\nEs un archivo existente\n");
+
+		if(parser_EmployeeFromBinary(pArchivo, pArrayListEmployee) != 0){
+
+			exito = 1;
+		}
+		fclose(pArchivo);
+	}
+
+	return exito;
+}
+
+/** \brief Alta de empleados
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int controller_addEmployee(LinkedList* pArrayListEmployee, int* idEmployee)
+{
+	Employee* nuevoEmpleado = NULL;
+	int exito = 0;
+	char nombre[TAM_NAME];
+	int sueldo;
+	int horasTrabajadas;
+
+	if(pArrayListEmployee != NULL){
+
+		(*idEmployee)++;
+
+		printf("\n\tAlta Empleado\n\n");
+
+		printf("El ID del nuevo Empleado es: %d", *idEmployee);
+
+		printf("\nIngrese nombre del Empleado: ");
+		fflush(stdin);
+		gets(nombre);
+		while(strlen(nombre) > TAM_NAME){
+			printf("Invalido. Reingrese nombre del Empleado: ");
+			gets(nombre);
+			fflush(stdin);
+		}
+
+		printf("\nIngrese cantidad de Horas Trabajadas: ");
+		fflush(stdin);
+		scanf("%d", &horasTrabajadas);
+		while(horasTrabajadas < 0 || horasTrabajadas > 1000){
+			printf("Invalido. Reingrese cantidad de Horas Trabajadas: ");
+			fflush(stdin);
+			scanf("%d", &horasTrabajadas);
+		}
+
+		printf("\nIngrese sueldo del Empleado: ");
+		fflush(stdin);
+		scanf("%d", &sueldo);
+		while(sueldo < 0){
+			printf("Invalido. Reingrese Sueldo del Empleado: ");
+			fflush(stdin);
+			scanf("%d", &sueldo);
+		}
+
+		nuevoEmpleado = employee_newParametros(*idEmployee, nombre, horasTrabajadas, sueldo);
+
+		if(nuevoEmpleado != NULL){
+
+			ll_add(pArrayListEmployee, nuevoEmpleado);
+			exito = 1;
+		}
+	}
+
+    return exito;
+}
+
+int controller_removeAllEmployes(LinkedList* pArrayListEmployee){
+
+	int tam;
+	int exito = 0;
+
+	if(pArrayListEmployee != NULL){
+
+		tam = ll_len(pArrayListEmployee);
+
+		for(int i = tam - 1; i >= 0; i--){
+
+			ll_remove(pArrayListEmployee, i);
+
+			if(i == 0){
+				exito = 1;
+			}
+		}
+	}
+	return exito;
+}
+
+/** \brief Modificar datos de empleado
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int controller_editEmployee(LinkedList* pArrayListEmployee)
+{
+	int exito = 0;
+	int idIngreso;
+	int indice;
+	char respuesta;
+	int opcionModificar;
+	char nombreEmpleado[TAM_NAME];
+	int sueldo;
+	int horasTrabajadas;
+
+	Employee* nuevoEmpleado = NULL;
+
+	if(pArrayListEmployee != NULL){
+
+		printf("\n\t\t\tModificar Empleados\n");
+		controller_ListEmployee(pArrayListEmployee);
+		printf("\n\nIngrese numero de ID del Empleado que quiera modificar: ");
+		fflush(stdin);
+		scanf("%d", &idIngreso);
+		indice = employee_finder(idIngreso, pArrayListEmployee);
+		while(indice == -1){
+			printf("\nID Invalido. Ingrese numero de ID del Empleado que quiera modificar: ");
+			fflush(stdin);
+			scanf("%d", &idIngreso);
+			indice = employee_finder(idIngreso, pArrayListEmployee);
+		}
+
+		printf("\n");
+
+		if( indice == -1){
+			printf("\nNo hay empleados para modificar");
+		}
+		else{
+			employee_showAnEmployee(pArrayListEmployee, indice);
+			printf("\n\nDesea seguir con la modificacion? Marque 's' para Si y 'n' para No (en minuscula).\n");
+			fflush(stdin);
+			respuesta = getchar();
+		    nuevoEmpleado = (Employee*) ll_get(pArrayListEmployee, indice);
+		    employee_getNombre(nuevoEmpleado, nombreEmpleado);
+		    employee_getHorasTrabajadas(nuevoEmpleado, &horasTrabajadas);
+		    employee_getSueldo(nuevoEmpleado, &sueldo);
+
+		    if(nuevoEmpleado != NULL){
+
+				if(respuesta == 's'){
+					printf("\n1. Modificar Nombre\n");
+					printf("2. Modificar Horas Trabajas\n");
+					printf("3. Modificar Sueldo\n");
+					printf("\nIngrese el numero correspondiente a la caracteristica que desea modificar: ");
+					fflush(stdin);
+					scanf("%d", &opcionModificar);
+
+					switch(opcionModificar){
+
+						case 1:
+							printf("\nIngrese nuevo nombre del empleado: ");
+							fflush(stdin);
+							gets(nombreEmpleado);
+							while(strlen(nombreEmpleado) > TAM_NAME){
+								printf("Nombre demasiado largo. Ingrese nuevo nombre del empleado: ");
+								fflush(stdin);
+								gets(nombreEmpleado);
+							}
+							employee_setNombre(nuevoEmpleado, nombreEmpleado);
+							exito = 1;
+							break;
+
+						case 2:
+							printf("Ingrese nueva cantidad de horas trabajadas (Maximo de 760hs): ");
+							fflush(stdin);
+							scanf("%d", &horasTrabajadas);
+							while(horasTrabajadas > 760 || horasTrabajadas < 1){
+								printf("Cantidad Invalida. Ingrese nueva cantidad de horas trabajadas (Maximo de 760hs): ");
+								fflush(stdin);
+								scanf("%d", &horasTrabajadas);
+							}
+							employee_setHorasTrabajadas(nuevoEmpleado, horasTrabajadas);
+							exito = 1;
+							break;
+
+						case 3:
+							printf("Ingrese nuevo sueldo del empleado: ");
+							fflush(stdin);
+							scanf("%d", &sueldo);
+							while(sueldo < 1){
+								printf("Sueldo Invalido. Ingrese nuevo sueldo del empleado: ");
+								fflush(stdin);
+								scanf("%d", &sueldo);
+							}
+							employee_setSueldo(nuevoEmpleado, sueldo);
+							exito = 1;
+							break;
+						default:
+							printf("Dato invalido");
+							exito = 1;
+							break;
+
+					}
+				}
+				else{
+					printf("\nModificacion cancelada por el usuario");
+					exito = 1;
+				}
+		    }
+		}
+	}
+
+    return exito;
+}
+
+
+/** \brief Baja de empleado
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int controller_removeEmployee(LinkedList* pArrayListEmployee)
+{
+
+	int exito = 0;
+	int idIngreso;
+	int indice;
+	char respuesta;
+
+	if(pArrayListEmployee){
+
+		printf("\n\t\t\tBaja de Empleados\n");
+		controller_ListEmployee(pArrayListEmployee);
+		printf("\n\nIngrese numero de ID del Empleado que quiera dar de baja: ");
+		fflush(stdin);
+		scanf("%d", &idIngreso);
+		indice = employee_finder(idIngreso, pArrayListEmployee);
+		while(indice == -1){
+			printf("\nID Invalido. Ingrese numero de ID del Empleado que quiera modificar: ");
+			fflush(stdin);
+			scanf("%d", &idIngreso);
+			indice = employee_finder(idIngreso, pArrayListEmployee);
+		}
+
+		printf("\n");
+
+		if( indice == -1){
+			printf("\nNo hay empleados para dar de baja");
+		}
+		else{
+			employee_showAnEmployee(pArrayListEmployee, indice);
+			printf("\n\nDesea seguir con la Baja? Marque 's' para Si y 'n' para No (en minuscula).\n");
+			fflush(stdin);
+			respuesta = getchar();
+
+			if(respuesta == 's'){
+
+				ll_remove(pArrayListEmployee, indice);
+				exito = 1;
+
+			}
+			else{
+				printf("\nBaja cancelada por el usuario");
+				exito = 1;
+			}
+		}
+	}
+
+    return exito;
+}
+
+/** \brief Listar empleados
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int controller_ListEmployee(LinkedList* pArrayListEmployee)
+{
+	int tam;
+	int exito = 0;
+
+	if(pArrayListEmployee != NULL){
+
+		tam = ll_len(pArrayListEmployee);
+
+		printf("\nID\t\tNOMBRE\t\t\tHORAS\t\tSUELDO\n");
+		printf("----------------------------------------------------------------\n\n");
+		for(int i = 0; i < tam; i++){
+
+
+			employee_showAnEmployee(pArrayListEmployee, i);
+			exito = 1;
+
+		}
+	}
+	return exito;
+}
+
+/** \brief Ordenar empleados
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int controller_sortEmployee(LinkedList* pArrayListEmployee)
+{
+	int exito = 0;
+	int opcionModificar;
+
+	if(pArrayListEmployee != NULL){
+
+
+
+		printf("\n\t\t\tOrdenar Empleados\n");
+
+		printf("\n1. Ordenar por Nombre (Ascendente)\n");
+		printf("2. Ordenar por Horas Trabajadas (Ascendente)\n");
+		printf("3. Ordenar por Sueldo (Ascendente)\n");
+		printf("\nIngrese el numero correspondiente a la opcion que quiera: ");
+		fflush(stdin);
+		scanf("%d", &opcionModificar);
+
+		switch(opcionModificar){
+
+		case 1:
+
+			if(ll_sort(pArrayListEmployee, employee_SortbyName, 1) == 0){
+
+				exito = 1;
+			}
+
+			break;
+
+		case 2:
+
+			if(ll_sort(pArrayListEmployee, employee_SortbyHours, 1) == 0){
+
+				exito = 1;
+			}
+
+			break;
+
+		case 3:
+
+			if(ll_sort(pArrayListEmployee, employee_SortbySalary, 1) == 0){
+
+				exito = 1;
+			}
+
+			break;
+
+		default:
+			printf("Dato invalido");
+			exito = 1;
+			break;
+
+		}
+
+
+	}
+	return exito;
+}
+
+/** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
+{
+	int exito = 0;
+
+	FILE* pArchivo;
+
+	pArchivo = fopen(path, "w");
+
+	if(pArchivo == NULL){
+
+		printf("\nNo se pudo crear el archivo\n");
+	}
+	else{
+
+		if(parser_writeToText(pArchivo, pArrayListEmployee) != 0){
+			printf("\nSe pudieron escribir los datos en el archivo de texto");
+		}
+		fclose(pArchivo);
+		exito = 1;
+	}
+	return exito;
+}
+
+/** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
+{
+	int exito = 0;
+
+	FILE* pArchivo;
+
+	pArchivo = fopen(path, "wb");
+
+	if(pArchivo == NULL){
+
+		printf("\nNo se pudo crear el archivo\n");
+	}
+	else{
+
+		if(parser_writeToBinary(pArchivo, pArrayListEmployee) != 0){
+			printf("\nSe pudieron escribir los datos en el archivo binario");
+		}
+		fclose(pArchivo);
+		exito = 1;
+	}
+	return exito;
+}

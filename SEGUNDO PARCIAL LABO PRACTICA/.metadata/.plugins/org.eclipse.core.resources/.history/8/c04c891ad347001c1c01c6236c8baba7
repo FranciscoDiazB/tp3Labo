@@ -1,0 +1,299 @@
+/*
+ ============================================================================
+ Name        : practicaLabo.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "linkedlist.h"
+#include "controller.h"
+#include "employee.h"
+
+int menu();
+
+int main()
+{
+	setbuf(stdout, NULL);
+
+    char respuesta = 'n';
+    int flagText = 0;
+    int flagAlta = 0;
+    int flagBin = 0;
+    int opcionDataText;
+    int opcionText;
+    int opcionBin;
+    Employee* empleadoID;
+    int idEmpleado = 0;
+
+    LinkedList* listaEmpleados = ll_newLinkedList();
+    LinkedList* listraFiltradaHoras;
+
+    do {
+
+    	switch(menu()){
+
+    	case 1:
+    		if(flagAlta == 0 && flagText == 0){
+
+				if(controller_loadFromText("data.csv", listaEmpleados) != 0){
+					printf("\nLos datos del archivo se cargaron en la Lista");
+					flagText = 1;
+					empleadoID = (Employee*) ll_get(listaEmpleados, ll_len(listaEmpleados) - 1);
+					employee_getId(empleadoID, &idEmpleado);
+
+				}
+				else{
+					printf("\nHubo un problema para cargar los datos");
+				}
+    		}
+    		else if (flagAlta == 1 || flagText == 1){
+    			printf("\nLos datos que esten en la lista se van a sobreescribir. Desea continuar?\n\n");
+    			printf("1. SI, DESEO CONTINUAR.\n");
+    			printf("2. NO, PREFIERO VOLVER AL MENU.\n\n");
+    			printf("Ingrese la opcion: ");
+    			scanf("%d", &opcionText);
+    			while(opcionText != 1 && opcionText != 2){
+    				printf("Opcion invalida. Ingrese la opcion: ");
+    				fflush(stdin);
+    				scanf("%d", &opcionText);
+    			}
+    			if(opcionText == 1){
+    				if(controller_removeAllEmployes(listaEmpleados) != 0 && controller_loadFromText("data.csv", listaEmpleados) != 0){
+    					printf("\nLos datos del archivo cargados en la Lista, y los datos previos fueron sobreescritos.");
+    					flagText = 1;
+    					empleadoID = (Employee*) ll_get(listaEmpleados, ll_len(listaEmpleados) - 1);
+    					employee_getId(empleadoID, &idEmpleado);
+    				}
+    			}
+    			else{
+    				printf("\n\nAhora vuelve al menu.");
+    			}
+    		}
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 2:
+    		if(flagBin == 1){
+
+    			printf("\nLos datos que esten en la lista se van a sobreescribir. Desea continuar?\n\n");
+    			printf("1. SI, DESEO CONTINUAR.\n");
+    			printf("2. NO, PREFIERO VOLVER AL MENU.\n\n");
+    			printf("Ingrese la opcion: ");
+    			scanf("%d", &opcionBin);
+    			while(opcionBin != 1 && opcionBin != 2){
+    				printf("Opcion invalida. Ingrese la opcion: ");
+    				fflush(stdin);
+    				scanf("%d", &opcionBin);
+    			}
+    			if(opcionBin == 1){
+
+    				if(controller_removeAllEmployes(listaEmpleados) != 0 && controller_loadFromBinary("dataBin.bin", listaEmpleados) != 0){
+    					printf("\nLos datos del archivo binario cargados en la Lista, y los datos previos fueron sobreescritos.");
+    					flagText = 1;
+    					empleadoID = (Employee*) ll_get(listaEmpleados, ll_len(listaEmpleados) - 1);
+    					employee_getId(empleadoID, &idEmpleado);
+    				}
+					else{
+						printf("\nHubo un prolema para cargar datos del archivo binario");
+					}
+    			}
+    			else{
+    				printf("\n\nAhora vuelve al menu.");
+    			}
+    		}
+    		else{
+    			printf("\nPrimero se deben guardar los datos en un archivo binario.");
+    		}
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 3:
+    		if(flagText == 0){
+    			printf("\nPrimero se deben cargar los datos del archivo para que se puedan dar de alta nuevos datos.");
+    		}
+    		else{
+				if(controller_addEmployee(listaEmpleados, &idEmpleado) != 0){
+					printf("\nAlta exitosa");
+					flagAlta = 1;
+				}
+    		}
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 4:
+    		if(flagText == 0){
+    			printf("\nPrimero se deben cargar los datos del archivo para que se pueda realizar modificaciones de los empleados.");
+    		}
+    		else{
+    			if(controller_editEmployee(listaEmpleados) == 0){
+    				printf("\nHubo un problema para la edicion de datos.");
+    			}
+    			else{
+    				printf("\nModificacion exitosa.");
+    			}
+    		}
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 5:
+    		if(flagText == 0){
+    			printf("\nPrimero se deben cargar los datos del archivo para que se pueda realizar baja de los empleados.");
+    		}
+    		else{
+    			if(controller_removeEmployee(listaEmpleados) == 0){
+    				printf("\nHubo un problema para la baja de datos.");
+    			}
+    			else{
+    				printf("\nBaja exitosa.");
+    			}
+    		}
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 6:
+    		if(controller_ListEmployee(listaEmpleados) == 0){
+    		    printf("\nNo hay datos cargados en la Lista.");
+    		}
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 7:
+    		if(controller_sortEmployee(listaEmpleados) != 0){
+    			printf("\nOrdenado");
+    		}
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 8:
+    		if(flagBin == 1 || flagText == 1){
+
+    			printf("\nDonde quiere escribir los datos del archivo de texto?\n\n");
+    			printf("1. EN EL ARCHIVO 'data.csv', SOBREESCRIBIENDO TODOS LOS DATOS PREVIOS DE ESE ARCHIVO\n");
+    			printf("2. EN EL ARCHIVO 'dataText.csv', REALIZANDO LA CREACION DE UN ARCHIVO NUEVO\n\n");
+    			printf("Ingrese la opcion: ");
+    			scanf("%d", &opcionDataText);
+
+    			while(opcionDataText != 1 && opcionDataText != 2){
+    				printf("Opcion invalida. Ingrese la opcion: ");
+    				fflush(stdin);
+    				scanf("%d", &opcionDataText);
+    			}
+
+    			if(opcionDataText == 1){
+    				if(controller_saveAsText("data.csv", listaEmpleados) != 0){
+    					printf("\nExitos al crear el archivo de texto");
+    				}
+    			}
+    			else{
+    				if(controller_saveAsText("dataText.csv", listaEmpleados) != 0){
+    					printf("\nExitos al crear el archivo de texto");
+    				}
+    			}
+    		}
+    		else{
+    			printf("\nDeben existir datos en el sistema para poder cargarlos en un archivo");
+    		}
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 9:
+    		if(flagText == 1){
+
+				if(controller_saveAsBinary("dataBin.bin", listaEmpleados) != 0){
+					printf("\nExitos al crear el archivo binario");
+					flagBin = 1;
+				}
+    		}
+    		else{
+    			printf("\nSe deben cargar los datos del archivo de texto para poder escribir en el archivo binario.");
+    		}
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 10:
+    		listaEmpleados = ll_map(listaEmpleados, employee_IncreaseSalary);
+
+    		if(listaEmpleados != NULL){
+
+    			printf("\nSueldos incrementados con exito");
+    		}
+
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 11:
+    		listraFiltradaHoras = ll_filter(listaEmpleados, )
+
+    		if(listaEmpleados != NULL){
+
+    			printf("\nSueldos incrementados con exito");
+    		}
+
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	case 12:
+    		printf("\nEsta seguro que desea salir? Oprima la tecla 's' desea salir\n");
+    		printf("De lo contrario oprima la tecla 'n' (minuscula)\n");
+    		fflush(stdin);
+    		respuesta = getchar();
+    		printf("\n\n");
+    		system("pause");
+    		break;
+
+    	default:
+    		printf("\n");
+    		printf("Dato invalido. Reingrese numero\n");
+    		system("pause");
+
+    	}
+
+    } while(respuesta == 'n');
+
+    ll_deleteLinkedList(listaEmpleados);
+    return 0;
+}
+
+int menu(){
+
+	int opcion;
+
+	printf("\n");
+	printf("\t\t**** Menu ****");
+	printf("\n\n");
+	printf("1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n");
+	printf("2. Cargar los datos de los empleados desde el archivo data.csv (modo binario).\n");
+	printf("3. Alta de empleado\n");
+	printf("4. Modificar datos de empleado\n");
+	printf("5. Baja de empleado\n");
+	printf("6. Listar empleados\n");
+	printf("7. Ordenar empleados\n");
+	printf("8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
+	printf("9. Guardar los datos de los empleados en el archivo data.csv (modo binario).\n");
+	printf("10. Aumentar los sueldos de los empleados en un 10 porciento\n");
+	printf("11. Filtrar los empleados con 200 horas o mas de trabajo\n");
+	printf("12. Salir\n\n\n");
+
+	printf("Ingrese la opcion correspondiente: ");
+	fflush(stdin);
+	scanf("%d", &opcion);
+
+	return opcion;
+
+}

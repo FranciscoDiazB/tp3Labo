@@ -1,0 +1,238 @@
+Info: Nothing to build for practicaLabo
+Info: Nothing to build for practicaLabo
+Info: Nothing to build for practicaLabo
+Info: Nothing to build for practicaLabo
+Info: Nothing to build for practicaLabo
+11:50:10 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+13:28:06 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\controller.o" "..\\src\\controller.c" 
+..\src\controller.c: In function 'controller_sortEmployee':
+..\src\controller.c:401:36: error: 'employee_SortbyName' undeclared (first use in this function)
+     if(ll_sort(pArrayListEmployee, employee_SortbyName, 1) == 0){
+                                    ^~~~~~~~~~~~~~~~~~~
+..\src\controller.c:401:36: note: each undeclared identifier is reported only once for each function it appears in
+..\src\controller.c:410:36: error: 'employee_SortbyHours' undeclared (first use in this function)
+     if(ll_sort(pArrayListEmployee, employee_SortbyHours, 1) == 0){
+                                    ^~~~~~~~~~~~~~~~~~~~
+..\src\controller.c:419:36: error: 'employee_SortbySalary' undeclared (first use in this function)
+     if(ll_sort(pArrayListEmployee, employee_SortbySalary, 1) == 0){
+                                    ^~~~~~~~~~~~~~~~~~~~~
+..\src\controller.c:377:13: warning: unused variable 'auxEmpleado' [-Wunused-variable]
+   Employee* auxEmpleado;
+             ^~~~~~~~~~~
+13:29:23 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\linkedlist.o" "..\\src\\linkedlist.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\controller.o" "..\\src\\controller.c" 
+..\src\controller.c: In function 'controller_sortEmployee':
+..\src\controller.c:377:13: warning: unused variable 'auxEmpleado' [-Wunused-variable]
+   Employee* auxEmpleado;
+             ^~~~~~~~~~~
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+..\src\employee.c: In function 'employee_SortbyName':
+..\src\employee.c:304:36: warning: passing argument 2 of 'employee_getId' from incompatible pointer type [-Wincompatible-pointer-types]
+  employee_getId((Employee*) thisA, nameB);
+                                    ^~~~~
+..\src\employee.c:93:5: note: expected 'int *' but argument is of type 'char *'
+ int employee_getId(Employee* this,int* id){
+     ^~~~~~~~~~~~~~
+..\src\employee.c:305:36: warning: passing argument 2 of 'employee_getId' from incompatible pointer type [-Wincompatible-pointer-types]
+  employee_getId((Employee*) thisB, nameA);
+                                    ^~~~~
+..\src\employee.c:93:5: note: expected 'int *' but argument is of type 'char *'
+ int employee_getId(Employee* this,int* id){
+     ^~~~~~~~~~~~~~
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+13:30:33 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+13:39:18 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\controller.o" "..\\src\\controller.c" 
+..\src\controller.c: In function 'controller_sortEmployee':
+..\src\controller.c:370:6: warning: unused variable 'tam' [-Wunused-variable]
+  int tam;
+      ^~~
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+13:40:57 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\controller.o" "..\\src\\controller.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+Info: Nothing to build for practicaLabo
+14:39:19 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\controller.o" "..\\src\\controller.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+14:57:08 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\controller.o" "..\\src\\controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\linkedlist.o" "..\\src\\linkedlist.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+..\src\practicaLabo.c: In function 'main':
+..\src\practicaLabo.c:227:47: warning: passing argument 2 of 'll_map' from incompatible pointer type [-Wincompatible-pointer-types]
+       listaEmpleados = ll_map(listaEmpleados, employee_IncreaseSalary);
+                                               ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from ..\src\practicaLabo.c:13:0:
+..\src\linkedlist.h:44:13: note: expected 'void (*)(void *)' but argument is of type 'void (*)(Employee *) {aka void (*)(struct <anonymous> *)}'
+ LinkedList* ll_map(LinkedList* this, void (*pFunc)(void* pElement));
+             ^~~~~~
+..\src\practicaLabo.c: In function 'menu':
+..\src\practicaLabo.c:276:61: warning: unknown conversion type character 0xa in format [-Wformat=]
+  printf("10. Aumentar los sueldos de los empleados en un 10%\n");
+                                                             ^
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+14:57:28 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+..\src\practicaLabo.c: In function 'main':
+..\src\practicaLabo.c:227:47: warning: passing argument 2 of 'll_map' from incompatible pointer type [-Wincompatible-pointer-types]
+       listaEmpleados = ll_map(listaEmpleados, &employee_IncreaseSalary);
+                                               ^
+In file included from ..\src\practicaLabo.c:13:0:
+..\src\linkedlist.h:44:13: note: expected 'void (*)(void *)' but argument is of type 'void (*)(Employee *) {aka void (*)(struct <anonymous> *)}'
+ LinkedList* ll_map(LinkedList* this, void (*pFunc)(void* pElement));
+             ^~~~~~
+..\src\practicaLabo.c: In function 'menu':
+..\src\practicaLabo.c:276:61: warning: unknown conversion type character 0xa in format [-Wformat=]
+  printf("10. Aumentar los sueldos de los empleados en un 10%\n");
+                                                             ^
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+14:58:16 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+..\src\practicaLabo.c: In function 'main':
+..\src\practicaLabo.c:227:47: warning: passing argument 2 of 'll_map' from incompatible pointer type [-Wincompatible-pointer-types]
+       listaEmpleados = ll_map(listaEmpleados, employee_IncreaseSalary);
+                                               ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from ..\src\practicaLabo.c:13:0:
+..\src\linkedlist.h:44:13: note: expected 'void (*)(void *)' but argument is of type 'void (*)(Employee *) {aka void (*)(struct <anonymous> *)}'
+ LinkedList* ll_map(LinkedList* this, void (*pFunc)(void* pElement));
+             ^~~~~~
+..\src\practicaLabo.c: In function 'menu':
+..\src\practicaLabo.c:276:61: warning: unknown conversion type character 0xa in format [-Wformat=]
+  printf("10. Aumentar los sueldos de los empleados en un 10%\n");
+                                                             ^
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+..\src\employee.c:365:6: error: conflicting types for 'employee_IncreaseSalary'
+ void employee_IncreaseSalary(void* this){
+      ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from ..\src\employee.c:5:0:
+..\src\employee.h:51:6: note: previous declaration of 'employee_IncreaseSalary' was here
+ void employee_IncreaseSalary(Employee* this);
+      ^~~~~~~~~~~~~~~~~~~~~~~
+14:59:02 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\controller.o" "..\\src\\controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+..\src\practicaLabo.c: In function 'menu':
+..\src\practicaLabo.c:276:61: warning: unknown conversion type character 0xa in format [-Wformat=]
+  printf("10. Aumentar los sueldos de los empleados en un 10%\n");
+                                                             ^
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+14:59:22 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+15:01:19 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+..\src\employee.c: In function 'employee_IncreaseSalary':
+..\src\employee.c:371:3: warning: 'sueldo' may be used uninitialized in this function [-Wmaybe-uninitialized]
+   employee_getSueldo((Employee*) this, sueldo);
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+15:01:44 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+15:02:46 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+..\src\employee.c: In function 'employee_IncreaseSalary':
+..\src\employee.c:371:40: warning: passing argument 2 of 'employee_getSueldo' makes pointer from integer without a cast [-Wint-conversion]
+   employee_getSueldo((Employee*) this, sueldo);
+                                        ^~~~~~
+..\src\employee.c:205:5: note: expected 'int *' but argument is of type 'int'
+ int employee_getSueldo(Employee* this,int* sueldo){
+     ^~~~~~~~~~~~~~~~~~
+..\src\employee.c:371:3: warning: 'sueldo' may be used uninitialized in this function [-Wmaybe-uninitialized]
+   employee_getSueldo((Employee*) this, sueldo);
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+15:02:57 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+15:22:09 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+..\src\practicaLabo.c: In function 'main':
+..\src\practicaLabo.c:240:29: warning: implicit declaration of function 'll_filter' [-Wimplicit-function-declaration]
+       listraFiltradaHoras = ll_filter(listaEmpleados, employee_Filter200PlusHours);
+                             ^~~~~~~~~
+..\src\practicaLabo.c:240:55: error: 'employee_Filter200PlusHours' undeclared (first use in this function)
+       listraFiltradaHoras = ll_filter(listaEmpleados, employee_Filter200PlusHours);
+                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+..\src\practicaLabo.c:240:55: note: each undeclared identifier is reported only once for each function it appears in
+15:22:42 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\controller.o" "..\\src\\controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\linkedlist.o" "..\\src\\linkedlist.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+17:17:31 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\linkedlist.o" "..\\src\\linkedlist.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\employee.o" "..\\src\\employee.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+17:42:03 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\linkedlist.o" "..\\src\\linkedlist.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+17:45:13 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+17:45:49 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+17:46:49 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
+19:02:42 **** Incremental Build of configuration Debug for project practicaLabo ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\controller.o" "..\\src\\controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\practicaLabo.o" "..\\src\\practicaLabo.c" 
+gcc -o practicaLabo.exe "src\\controller.o" "src\\employee.o" "src\\linkedlist.o" "src\\parser.o" "src\\practicaLabo.o" 
+Info: Nothing to build for practicaLabo
